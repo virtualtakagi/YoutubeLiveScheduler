@@ -1,0 +1,21 @@
+{
+	"manifest_version": 2,
+	"name": "Youtube Live Scheduler",
+	"short_name": "Live Schedule",
+	"version": "1.0.0",
+	"description": "「YoutubeLiveの開始時刻を忘れてしまった！」を解決します。ライブページでワンクリックするだけでライブの開始時刻を記録します。また、ライブ開始までの残り時間も確認できます。",
+	"icons": {
+		"16": "icon/icon-16.png",
+		"48": "icon/icon-48.png",
+		"128": "icon/icon-128.png"
+		},
+	"browser_action": {
+		"default_icon": {
+			"19": "icon/icon-48.png"},
+		"default_popup": "popup.html"
+	},
+  "permissions": [
+    "tabs",
+    "storage"
+  ]
+}

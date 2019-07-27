@@ -1,0 +1,91 @@
+body {
+	background: #282c2f;
+	color: #8e9294;
+	width: 300px;
+	height: 600px;
+	font-size: 12px;
+	font-family: "游ゴシック Medium",YuGothic,YuGothicM,"Hiragino Kaku Gothic ProN","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,sans-serif,"Font Awesome 5 Free";
+}
+
+/*** Header ***/
+
+header {
+	display: block;
+	border-bottom: 1px solid #ded3be;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.button {
+	display: inline-block;
+	width: 130px;
+	background: #282c2f;
+	border: #ded3be 1px solid;
+	border-radius: 6px;
+	font-weight: 900px;
+	color: #ded3de;
+	opacity: 0.8;
+}
+
+#removeAll:hover, #remove:hover, #create:hover {
+  background: #414141;
+  opacity: 1.0;
+}
+
+#removeAll:active, #remove:active, #create:active {
+  background: #414141;
+  border: #ded3be 1px solid;
+  border-radius: 6px;
+  opacity:0.8;
+}
+
+/*** Section ***/
+
+section {
+	display: block;
+	background: #333;
+	color: #ded3de;
+	margin: 10px auto;
+	border-radius: 5px;
+}
+
+#channel {
+	display: inline;
+	width: 300px;
+	margin: 5px auto;
+	color: #F0E68C;
+}
+
+#title {
+	display: inline;
+	width: 300px;
+	margin: 5px auto;
+	color: #F0E68C;
+}
+
+#title > a {
+	text-decoration: none;
+	color: #F0E68C;
+}
+
+#title > a:hover {
+	color: #e6dd5c;
+	opacity: 0.8;
+}
+
+#title > a:active {
+	color: #e6dd5c;
+	opacity: 1.0;
+}
+
+#time {
+	display: inline;
+	width: 300px;
+	margin: 5px auto;
+	color: #F0E68C;
+}
+
+#hour, #min, #sec {
+	display: inline;
+	color: #F0E68C;
+}
