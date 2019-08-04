@@ -59,6 +59,13 @@ $('#create').on('click', function(){
 		    		//HTMLタグをChrome.Storageへ保存
 		    		saveChromeStorage(tagArray);
 
+		    		var tobackground = channel + "," + time;
+
+		    		//backgroundでタイマーを動かす
+		    		chrome.runtime.sendMessage({
+		    			text: tobackground
+		    		});
+
 		    		//HTMLタグに現在の時刻との差分を付与する
 		    		tagArray[0] = setTimeLeft(tagArray[1], tagArray[0]);
 
@@ -70,14 +77,25 @@ $('#create').on('click', function(){
 	})
 });
 
+
+//OPTIONボタンがクリックされたときの処理
+$('#option').on('click', function() {
+	window.location.href = "../options.html";
+});
+
 //ALLDELボタンがクリックされた時の処理
 $('#removeAll').on('click', function(){
 
-	//LoacalStorageの全削除
-	removeAllChromeStorage();
+	if (confirm('全て削除しますか？')) {
+		//LoacalStorageの全削除
+		removeAllChromeStorage();
 
-	//表示中のライブスケジュールを全て消去
-	$('section').remove();
+		//表示中のライブスケジュールを全て消去
+		$('section').remove();
+
+		//全てのアラームをクリアする
+		chrome.alarms.clearAll();
+	}
 })
 
 //DELボタンがクリックされた時の処理

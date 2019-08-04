@@ -18,7 +18,7 @@ header {
 
 .button {
 	display: inline-block;
-	width: 130px;
+	width: 90px;
 	background: #282c2f;
 	border: #ded3be 1px solid;
 	border-radius: 6px;
@@ -27,12 +27,12 @@ header {
 	opacity: 0.8;
 }
 
-#removeAll:hover, #remove:hover, #create:hover {
+#option:hover, #removeAll:hover, #remove:hover, #create:hover {
   background: #414141;
   opacity: 1.0;
 }
 
-#removeAll:active, #remove:active, #create:active {
+#option:active, #removeAll:active, #remove:active, #create:active {
   background: #414141;
   border: #ded3be 1px solid;
   border-radius: 6px;

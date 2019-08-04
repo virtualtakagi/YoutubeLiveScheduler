@@ -1,0 +1,87 @@
+body {
+	background: #282c2f;
+	color: #8e9294;
+	font-size: 14px;
+	width: 300px;
+	height: 285px;
+	font-family: "游ゴシック Medium",YuGothic,YuGothicM,"Hiragino Kaku Gothic ProN","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,sans-serif,"Font Awesome 5 Free";
+}
+
+/*** Header ***/
+
+header {
+	display: block;
+	border-bottom: 1px solid #ded3be;
+	border-radius: 5px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+header > p {
+	margin: 0;
+	padding: 0;
+}
+
+/*** Section ***/
+
+section {
+	display: block;
+	background: #333;
+	color: #ded3de;
+	margin: 0px auto 0px;
+	border-radius: 6px;
+	text-align: center;
+	padding: 0;
+	padding-bottom: 5px;
+}
+
+
+#save {
+	text-align: center;
+}
+
+.button {
+	display: inline-block;
+	width: 100px;
+	background: #282c2f;
+	border: #ded3be 1px solid;
+	border-radius: 6px;
+	font-weight: 900px;
+	color: #ded3de;
+	opacity: 0.8;
+	margin: 10px auto;
+}
+
+.button:hover {
+  background: #414141;
+  opacity: 1.0;
+}
+
+.button:active {
+  background: #414141;
+  border: #ded3be 1px solid;
+  border-radius: 6px;
+  opacity:0.8;
+}
+
+
+/*** pulldown ***/
+.description {
+	font-size: 14px;
+	font-weight: 900px;
+	display: inline-block;
+	color: #8e9294;
+}
+
+.selectArea {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+select {
+	border-radius: 6px;
+    width: 90px;
+    margin: 0 auto;
+    color: #333;
+}
