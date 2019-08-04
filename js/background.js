@@ -14,19 +14,17 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 		var startTime = infoArray[1];
 		var remain = getTimeLeft(startTime);
 
-		//開始時刻のX分前に通知を行う（単位：分）
+		//LocalStorageから通知時間を読み込む
 		notifTime[0] = localStorage["notifTime1"] ? localStorage["notifTime1"] : 191844000;
 		notifTime[1] = localStorage["notifTime2"] ? localStorage["notifTime2"] : 191844000;
 		notifTime[2] = localStorage["notifTime3"] ? localStorage["notifTime3"] : 191844000;
-
-		const minTime = Math.min.apply(null, notifTime);
 
 		//開始までの時間が通知時間と一致したら通知を行う
 		if((notifTime[2] == remain)
 				|| (notifTime[1] == remain)
 				|| (notifTime[0] == remain)){
 			dispNotification(title, remain);
-		} else if(minTime > remain){
+		} else if(5 > remain){
 			chrome.alarms.clear(alarm.name);
 		}
 	});
