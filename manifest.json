@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Youtube Live Scheduler",
 	"short_name": "Live Schedule",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Youtubeライブの開始時刻を記録し、開始までの残り時間を通知します。",
 	"icons": {
 		"16": "icon/icon-16.png",
