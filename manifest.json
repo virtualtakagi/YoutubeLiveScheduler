@@ -5,13 +5,13 @@
 	"version": "1.0.2",
 	"description": "Youtubeライブの開始時刻を記録し、開始までの残り時間を通知します。",
 	"icons": {
-		"16": "icon/icon-16.png",
-		"48": "icon/icon-48.png",
-		"128": "icon/icon-128.png"
+		"16": "icon/Icon-16.png",
+		"48": "icon/Icon-48.png",
+		"128": "icon/Icon-128.png"
 		},
 	"browser_action": {
 		"default_icon": {
-			"19": "icon/icon-48.png"},
+			"19": "icon/Icon-48.png"},
 		"default_popup": "popup.html"
 	},
 	 "background": {

@@ -7,8 +7,6 @@ body {
 	font-family: "游ゴシック Medium",YuGothic,YuGothicM,"Hiragino Kaku Gothic ProN","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,sans-serif,"Font Awesome 5 Free";
 }
 
-/*** Header ***/
-
 header {
 	display: block;
 	border-bottom: 1px solid #ded3be;
@@ -38,8 +36,6 @@ header {
   border-radius: 6px;
   opacity:0.8;
 }
-
-/*** Section ***/
 
 section {
 	display: block;
