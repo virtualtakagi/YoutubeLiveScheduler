@@ -1,48 +1,30 @@
 var isKey;
-
 $('#create').on('click', function(){
 	chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs) {
-
 		if(tabs[0] === undefined){
 			console.log("URL Undefined.");
 			return;
 		}
-
 		var url = tabs[0].url;
-
 		var liveIdAr = url.split("v=");
-
 		reqUrl += liveIdAr[1] + "&part=" + part + "&key=" + api;
-
 		ajaxDataYoutube(reqUrl).done(function(jsondata){
-
 			var status = jsondata.items[0].snippet.liveBroadcastContent;
-
 			if(status != "upcoming"){
 				console.log("LiveStatus is Not 'upcoming'");
 				return;
 			}
-
 			var time = new Date(jsondata.items[0].liveStreamingDetails.scheduledStartTime);
 			var channel = jsondata.items[0].snippet.channelTitle;
 			var title = jsondata.items[0].snippet.title;
-
 			time = convertTime(time);
-
 			tagArray = createTag(channel, title, time, liveIdAr[1], url);
-
 			isKey = false;
-
 		    (async ()=>{
-
 		    	await checkKey(tagArray[1]);
-
 		    	if(!isKey){
-
 		    		saveChromeStorage(tagArray);
-
 		    		var tobackground = channel + "," + time;
-
 		    		chrome.runtime.sendMessage({
 		    			text: tobackground
 		    		});
@@ -53,33 +35,23 @@ $('#create').on('click', function(){
 		});
 	})
 });
-
 $('#option').on('click', function() {
 	window.location.href = "../options.html";
 });
-
 $('#removeAll').on('click', function(){
-
 	if (confirm('全て削除しますか？')) {
 		removeAllChromeStorage();
-
 		$('section').remove();
-
 		chrome.alarms.clearAll();
 	}
 })
-
 $('#remove').on('click', function(){
-
 	var key =  $('section:last').attr('id');
-
 	chrome.storage.local.remove(key, function(){
 		console.log("deleted: " + key);
 	});
-
 	$('section:last').remove();
 })
-
 function ajaxDataYoutube(reqUrl){
 	return $.ajax({
 		type: 'GET',
@@ -90,20 +62,15 @@ function ajaxDataYoutube(reqUrl){
 		}
 	})
 }
-
 function convertTime(iso8601){
 	time = iso8601.toLocaleString();
 	return time;
 }
-
 function dispTag(tag){
 	$('header').after(tag);
 }
-
 function createTag(channel, title, time, liveid, url){
-
 	var tag = new Array(2);
-
     tag[0] = '<section id="' + liveid + '">'
     		+ 'Channel: <p id="channel">' + channel + '</p><br>'
     		+ 'LiveTitle: <p id="title"><a href="'+ url + '" target="_blank">' + title
@@ -111,60 +78,43 @@ function createTag(channel, title, time, liveid, url){
     		+ 'StartTime: <p id="time">' + time + '</p><br>'
     		+ 'TimeLeft: <p id="timeleft"></p>'
     		+ '</section>';
-
     tag[1] = liveid + "," + time;
-
 	return tag;
 }
-
 function setTimeLeft(key, tag){
-
 	var timeAr = key.split(",");
-
 	var start = new Date(timeAr[1]);
-
 	var now = new Date();
-
 	var duration = (start.getTime() - now.getTime()) / 1000;
-
 	if(duration <= 0){
-
 		var addTag = "<p id=\"hour\">00 </p>hours "
 						+ "<p id=\"min\">00 </p>minutes "
 						+ "<p id=\"sec\">00 </p>seconds";
 
 		var tagAr = tag.split("<p id=\"timeleft\">");
 		var tag = tagAr[0] + addTag + tagAr[1];
-
 		return tag;
 	}
-
 	var hour = Math.floor(duration / 3600);
 	var min = Math.floor((duration % 3600) / 60);
 	var sec = Math.floor((duration % 3600) % 60);
-
 	hour = zeroPadding(hour, 2);
 	min = zeroPadding(min, 2);
 	sec = zeroPadding(sec, 2);
-
 	var addTag = "<p id=\"hour\">" + hour +" </p>hours "
 					+ "<p id=\"min\">" + min + " </p>minutes "
 					+ "<p id=\"sec\">" + sec + " </p>seconds";
 
 	var tagAr = tag.split("<p id=\"timeleft\">");
 	var tag = tagAr[0] + addTag + tagAr[1];
-
 	return tag;
 }
-
 function zeroPadding(num, length){
 	return ('00' + num).slice(-length);
 }
-
 $(function(){
 	getChromeStorage();
 });
-
 function getChromeStorage() {
 	chrome.storage.local.get(function(items) {
 		if(items !== undefined) {
@@ -177,13 +127,11 @@ function getChromeStorage() {
 		}
 	})
 }
-
 function saveChromeStorage(tagArray) {
 	chrome.storage.local.set({[`${tagArray[1]}`]:tagArray[0]}, function() {
 		console.log("saved: " + tagArray[1]);
 	});
 }
-
 function checkKey(newKey){
 	return new Promise(function(resolve, reject){
 		chrome.storage.local.get(function(items) {
@@ -203,7 +151,6 @@ function checkKey(newKey){
 		});
 	});
 }
-
 function removeAllChromeStorage() {
 	chrome.storage.local.clear();
 	console.log("Erase ChromeStorage.")
