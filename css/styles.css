@@ -1,40 +1,67 @@
 body {
 	background: #282c2f;
 	color: #8e9294;
-	width: 300px;
-	height: 600px;
 	font-size: 12px;
 	font-family: "游ゴシック Medium",YuGothic,YuGothicM,"Hiragino Kaku Gothic ProN","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,sans-serif,"Font Awesome 5 Free";
+	padding: 0;
+	margin: 0 10px;
 }
 
-header {
-	display: block;
-	border-bottom: 1px solid #ded3be;
-	border-radius: 5px;
-	text-align: center;
+.container{
+	width: 400px;
+	display: -webkit-flex;
+	display: flex;
+	margin: 0;
+	padding: 0;
+}
+
+.main {
+	width: 360px;
+	margin: 0px;
+}
+
+.side {
+	width: 30px;
+	height: 170px;
+	margin-left: 10px;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
 }
 
 .button {
-	display: inline-block;
-	width: 90px;
+	display: block;
+	width: 30px;
+	height: 30px;
 	background: #282c2f;
 	border: #ded3be 1px solid;
-	border-radius: 6px;
+	border-radius: 50%;
 	font-weight: 900px;
 	color: #ded3de;
-	opacity: 0.8;
+	opacity: 0.9;
+	position: relative;
+	margin: 10px auto;
 }
 
-#option:hover, #removeAll:hover, #remove:hover, #create:hover {
+.button p{
+	margin: 0;
+	font-size: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform : translate(-50%,-50%);
+	transform : translate(-50%,-50%);
+}
+
+#option:hover, #removeAll:hover, #create:hover, #share:hover {
   background: #414141;
   opacity: 1.0;
 }
 
-#option:active, #removeAll:active, #remove:active, #create:active {
+#option:active, #removeAll:active, #create:active, #share:active {
   background: #414141;
   border: #ded3be 1px solid;
-  border-radius: 6px;
-  opacity:0.8;
+  opacity:0.9;
 }
 
 section {
