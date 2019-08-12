@@ -38,7 +38,7 @@ body {
 	border-radius: 50%;
 	font-weight: 900px;
 	color: #ded3de;
-	opacity: 0.9;
+	opacity: 1.0;
 	position: relative;
 	margin: 10px auto;
 }
@@ -53,15 +53,28 @@ body {
 	transform : translate(-50%,-50%);
 }
 
-#option:hover, #removeAll:hover, #create:hover, #share:hover {
+#create{
+	background: #003366;
+}
+
+#create:hover {
+	background: #004080;
+}
+
+#removeAll:hover, #option:hover, #share:hover {
   background: #414141;
   opacity: 1.0;
 }
 
-#option:active, #removeAll:active, #create:active, #share:active {
+#create:active, #share:active, #option:active {
+	border: #ded3be 1px solid;
+	opacity: 0.8;
+}
+
+#option:active, #removeAll:active, #share:active{
   background: #414141;
   border: #ded3be 1px solid;
-  opacity:0.9;
+  opacity:0.8;
 }
 
 section {
