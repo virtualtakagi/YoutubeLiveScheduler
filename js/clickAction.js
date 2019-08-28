@@ -23,9 +23,10 @@ $('#create').on('click', function(){
 		var channel = jsondata.items[0].snippet.channelTitle;
 		var title = jsondata.items[0].snippet.title;
 		time = convertTime(time);
+		var liveid = channel + "," + time;
 
 		// DOMを生成
-		tagArray = createTag(channel, title, time, liveIdAr[1], url);
+		tagArray = createTag(channel, title, time, liveid, url);
 
 		isKey = false;
 
@@ -70,12 +71,16 @@ $('#removeAll').on('click', function(){
 	}
 })
 
-$('#remove').on('click', function(){
-	var key =  $('section:last').attr('id');
+$(document).on('click','#remove', function(){
+	var key =  $(event.target).parent().parent().attr('id');
 	chrome.storage.local.remove(key, function(){
 		console.log("deleted: " + key);
 	});
-	$('section:last').remove();
+	chrome.alarms.clear(key, function(){
+		console.log("alarm deleted: " + key);
+	});
+
+	$(event.target).parent().parent().remove();
 })
 
 function ajaxDataYoutube(reqUrl){
@@ -108,6 +113,7 @@ function createTag(channel, title, time, liveid, url){
     		+ 'TimeLeft: <p id="timeleft"></p>'
     		+ '</section>';
     tag[1] = liveid + "," + time;
+    tag[2] = liveid;
 	return tag;
 }
 
@@ -137,7 +143,8 @@ function setTimeLeft(key, tag){
 
 	var addTag = "<p id=\"hour\">" + hour +" </p>hours "
 					+ "<p id=\"min\">" + min + " </p>minutes "
-					+ "<p id=\"sec\">" + sec + " </p>seconds";
+					+ "<p id=\"sec\">" + sec + " </p>seconds"
+					+ "<div id=\"del\"><i id=\"remove\" class=\"fas fa-minus-circle\"></i></div>";
 
 	var tagAr = tag.split("<p id=\"timeleft\">");
 	var tag = tagAr[0] + addTag + tagAr[1];
@@ -167,8 +174,8 @@ function getChromeStorage() {
 }
 
 function saveChromeStorage(tagArray) {
-	chrome.storage.local.set({[`${tagArray[1]}`]:tagArray[0]}, function() {
-		console.log("saved: " + tagArray[1]);
+	chrome.storage.local.set({[`${tagArray[2]}`]:tagArray[0]}, function() {
+		console.log("saved: " + tagArray[2]);
 	});
 }
 

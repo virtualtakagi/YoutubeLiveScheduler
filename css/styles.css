@@ -31,16 +31,15 @@ body {
 
 .button {
 	display: block;
-	width: 30px;
-	height: 30px;
+	width: 25px;
+	height: 25px;
 	background: #282c2f;
-	border: #ded3be 1px solid;
-	border-radius: 50%;
 	font-weight: 900px;
+	border-radius: 50%;
 	color: #ded3de;
 	opacity: 1.0;
 	position: relative;
-	margin: 10px auto;
+	margin: 8px auto;
 }
 
 .button p{
@@ -54,26 +53,23 @@ body {
 }
 
 #create{
-	background: #003366;
 }
 
 #create:hover {
 	background: #004080;
 }
 
-#removeAll:hover, #option:hover, #share:hover {
+#removeAll:hover, #option:hover, #share:hover, #remove:hover {
   background: #414141;
   opacity: 1.0;
 }
 
-#create:active, #share:active, #option:active {
-	border: #ded3be 1px solid;
+#create:active, #share:active, #option:active, #remove {
 	opacity: 0.8;
 }
 
 #option:active, #removeAll:active, #share:active{
   background: #414141;
-  border: #ded3be 1px solid;
   opacity:0.8;
 }
 
@@ -117,11 +113,25 @@ section {
 #time {
 	display: inline;
 	width: 300px;
-	margin: 5px auto;
 	color: #F0E68C;
+	padding:0;
+	margin:0;
 }
 
 #hour, #min, #sec {
+	margin:0;
+	padding:0;
 	display: inline;
 	color: #F0E68C;
+}
+
+#del {
+	display: inline-block;
+	padding:0;
+	margin-left: 100px;
+	border-radius: 5px;
+}
+
+#remove {
+	font-size: 18px;
 }
