@@ -23,7 +23,7 @@ $('#create').on('click', function(){
 		var channel = jsondata.items[0].snippet.channelTitle;
 		var title = jsondata.items[0].snippet.title;
 		time = convertTime(time);
-		var liveid = channel + "," + time;
+		var liveid = channel + ',' + time;
 
 		// DOMを生成
 		tagArray = createTag(channel, title, time, liveid, url);
@@ -37,7 +37,7 @@ $('#create').on('click', function(){
 		    	if(!isKey){
 
 		    		saveChromeStorage(tagArray);
-		    		var tobackground = channel + "," + time;
+		    		var tobackground = tagArray[1];
 
 		    		// background.jsにチャンネル名と開始時刻を送信
 		    		chrome.runtime.sendMessage({
@@ -45,7 +45,7 @@ $('#create').on('click', function(){
 		    		});
 
 		    		// 現在時刻から開始時刻までのカウントを付与
-		    		tagArray[0] = setTimeLeft(tagArray[1], tagArray[0]);
+		    		tagArray[0] = setTimeLeft(liveid, tagArray[0]);
 
 		    		// ライブ情報の表示
 		    		dispTag(tagArray[0]);
@@ -71,16 +71,17 @@ $('#removeAll').on('click', function(){
 	}
 })
 
-$(document).on('click','#remove', function(){
-	var key =  $(event.target).parent().parent().attr('id');
+$(document).on('click','#del', function(){
+	var key =  $(this).parent().attr('id');
 	chrome.storage.local.remove(key, function(){
 		console.log("deleted: " + key);
 	});
 	chrome.alarms.clear(key, function(){
 		console.log("alarm deleted: " + key);
+
 	});
 
-	$(event.target).parent().parent().remove();
+	$(this).parent().remove();
 })
 
 function ajaxDataYoutube(reqUrl){
@@ -112,8 +113,7 @@ function createTag(channel, title, time, liveid, url){
     		+ 'StartTime: <p id="time">' + time + '</p><br>'
     		+ 'TimeLeft: <p id="timeleft"></p>'
     		+ '</section>';
-    tag[1] = liveid + "," + time;
-    tag[2] = liveid;
+    tag[1] = liveid;
 	return tag;
 }
 
@@ -174,8 +174,8 @@ function getChromeStorage() {
 }
 
 function saveChromeStorage(tagArray) {
-	chrome.storage.local.set({[`${tagArray[2]}`]:tagArray[0]}, function() {
-		console.log("saved: " + tagArray[2]);
+	chrome.storage.local.set({[`${tagArray[1]}`]:tagArray[0]}, function() {
+		console.log("saved: " + tagArray[1]);
 	});
 }
 
