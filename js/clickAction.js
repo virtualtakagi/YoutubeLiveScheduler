@@ -126,7 +126,8 @@ function setTimeLeft(key, tag){
 	if(duration <= 0){
 		var addTag = "<p id=\"hour\">00 </p>hours "
 						+ "<p id=\"min\">00 </p>minutes "
-						+ "<p id=\"sec\">00 </p>seconds";
+						+ "<p id=\"sec\">00 </p>seconds"
+						+ "<div id=\"del\"><i id=\"remove\" class=\"fas fa-minus-circle\"></i></div>";
 
 		var tagAr = tag.split("<p id=\"timeleft\">");
 		var tag = tagAr[0] + addTag + tagAr[1];
